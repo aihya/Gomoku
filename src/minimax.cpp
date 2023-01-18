@@ -5,6 +5,20 @@
 #define SCORE(result) (result.second)
 #define GET_BIT(bitset, index) (bitset[18 + index])
 
+u_long reverse_bitset(u_long num)
+{
+    // This function should be used when we create new board.
+    u_long rev;
+
+    rev = 0;
+    while (num > 0)
+    {
+        rev <<= 1;
+        rev |= num & 1 ? 1 : 0;
+        num >>= 1;
+    }
+    return rev;
+}
 
 t_superposition superpose(t_board &board)
 {
