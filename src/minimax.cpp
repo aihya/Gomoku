@@ -34,22 +34,31 @@ t_superposition superpose(t_board &board)
 }
 
 
-std::vector<t_coord> get_possible_coords(t_board &board, int player)
+*/
+
+std::vector<t_coord> get_coords(t_board &board, int player)
 {
     std::vector<t_coord> coords;
+    t_superposition sup;
 
-    if (player == 1)
+    sup = superpos(board);
+    for (int r = 0; r < 19; r++)
     {
-        for (int i = 0; i <  board.size(); i++)
+        for (int c = 0; c < 19; c++)
         {
-
-        }
-    }
-    else
-    {
-        for (t_board::iterator row = board.begin(); it != board.end(); it++)
-        {
-
+            if (!sup[r].first[c])
+            {
+                // If one of the below conditions met, we move to the next position.
+                if (((c + 1 < 19) && (sup[r][c] ^ sup[r][c+1])) || // Right
+                    ((c - 1 > -1) && (sup[r][c] ^ sup[r][c-1])) || // Left
+                    ((r + 1 < 19) && (sup[r][c] ^ sup[r+1][c])) || // Top
+                    ((r - 1 > -1) && (sup[r][c] ^ sup[r-1][c])) || // Bottom
+                    ((c + 1 < 19) && (r + 1 < 19) && (sup[r][c] ^ sup[r+1][c+1])) || // Bottom-Right
+                    ((c + 1 < 19) && (r - 1 < 19) && (sup[r][c] ^ sup[r-1][c+1])) || // Top-Right
+                    ((c - 1 < 19) && (r + 1 < 19) && (sup[r][c] ^ sup[r+1][c-1])) || // Bottom-Left
+                    ((c - 1 < 19) && (r - 1 < 19) && (sup[r][c] ^ sup[r-1][c-1])))   // Top-Left
+                    coords.push_back(t_coord{r, c});
+            }
         }
     }
     return coords;
