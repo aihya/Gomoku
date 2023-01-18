@@ -33,9 +33,6 @@ t_superposition superpose(t_board &board)
     return sup;
 }
 
-
-*/
-
 std::vector<t_coord> get_coords(t_board &board, int player)
 {
     std::vector<t_coord> coords;
