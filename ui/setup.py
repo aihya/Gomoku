@@ -1,7 +1,7 @@
 import fonts
 from surface import Surface
 from visual_components import Button, CheckBoxs
-from init import *
+from macros import *
 
 
 class Setup(Surface):
@@ -156,7 +156,6 @@ class Setup(Surface):
         self.surface.blit(self.p2_surf.surface, self.p2_surf.rect)
 
     def loop(self):
-        global QUIT
 
         # subtitle
         middle = fonts.h2_t.render('Game Setup', True, BLACK_COLOR, BOARD_COLOR)
@@ -172,9 +171,7 @@ class Setup(Surface):
         while self.repeat:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    QUIT = True
-                    self.repeat = False
-                    continue
+                    exit(0)
                 if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                     if self.start.clicked():
                         return BOARD_SURFACE
@@ -183,10 +180,11 @@ class Setup(Surface):
                     for box in mode_checkboxs:
                         box.check_clicked()
 
-            self.start.update()
-            self.surface.blit(self.start.surface, self.start.rect)
-            self.draw_box_1()
-            self.draw_box_2()
-            self.window.blit(self)
-            self.window.update()
-            CLOCK.tick(30)
+            if self.repeat:
+                self.start.update()
+                self.surface.blit(self.start.surface, self.start.rect)
+                self.draw_box_1()
+                self.draw_box_2()
+                self.window.blit(self)
+                self.window.update()
+                CLOCK.tick(30)

@@ -1,6 +1,6 @@
 import signal
 from pexpect.popen_spawn import PopenSpawn
-from init import EXE_PATH
+from macros import EXE_PATH
 
 
 class Computer:

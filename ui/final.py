@@ -1,6 +1,6 @@
 import fonts
 from surface import Surface
-from init import *
+from macros import *
 from visual_components import Button
 
 
@@ -44,7 +44,6 @@ class Final(Surface):
         self._repeat = value
 
     def loop(self):
-        global QUIT
 
         # Header message
         header = fonts.h2_b.render('Game Finished!', True, BLACK_COLOR, BOARD_COLOR)
@@ -66,15 +65,14 @@ class Final(Surface):
         while self.repeat:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    QUIT = True
-                    self.repeat = False
-                    continue
+                    exit(0)
                 elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                     if self.button.clicked():
                         return SETUP_SURFACE
 
-            self.button.update()
-            self.surface.blit(self.button.surface, self.button.rect)
-            self.window.blit(self)
-            self.window.update()
-            CLOCK.tick(30)
+            if self.repeat:
+                self.button.update()
+                self.surface.blit(self.button.surface, self.button.rect)
+                self.window.blit(self)
+                self.window.update()
+                CLOCK.tick(30)

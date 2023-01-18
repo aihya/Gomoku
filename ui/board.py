@@ -1,7 +1,7 @@
 import math
 from pygame import gfxdraw
 from surface import Surface
-from init import *
+from macros import *
 from computer import Computer
 
 class Board(Surface):
@@ -168,7 +168,6 @@ class Board(Surface):
         self.window.update()
 
     def loop(self):
-        global QUIT
 
         if self.setup.p1_type.anchor.value == COMPUTER:
             if self.p1:
@@ -190,9 +189,7 @@ class Board(Surface):
         while self.repeat:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    QUIT = True
-                    self.repeat = False
-                    break
+                    exit(0)
                 if event.type == pygame.MOUSEBUTTONUP and event.button == 1 and self.check_hover():
                     x, y = pygame.mouse.get_pos()
                     x = math.floor((x-16) / self.step)
@@ -200,10 +197,9 @@ class Board(Surface):
                     if self.state.state[y][x] == '0':
                         self.state.update(x, y, str(self.player))
                         self.player = 1 if self.player == 2 else 2
-            if not QUIT:
-                self.update()
+            self.update()
             CLOCK.tick(30)
 
-        # # Reset the players: Need to check if the player is comuter to close it's process
-        # self.p1 = None
-        # self.p2 = None
+        # Reset the players: Need to check if the player is comuter to close it's process
+        self.p1 = None
+        self.p2 = None

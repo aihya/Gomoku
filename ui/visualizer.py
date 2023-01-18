@@ -1,7 +1,7 @@
 import pygame
 from surface    import Surface
 from fonts      import *
-from init       import *
+from macros     import *
 from random     import randint
 from computer   import Computer
 from setup      import Setup
@@ -83,7 +83,7 @@ class Game:
     This class represents the game logic.
     """
 
-    __slots__ = ('_state', '_window', '_setup_surface', '_board_surface', '_final_surface', '_current_surface', '_computer')
+    __slots__ = ('_state', '_window', '_setup_surface', '_board_surface', '_final_surface', '_current_surface')
 
     def __init__(self):
         self._state           = State()
@@ -122,9 +122,7 @@ class Game:
         return self._state
 
     def run(self):
-        global QUIT
-
-        while not QUIT:
+        while self.current_surface:
             if self.current_surface == SETUP_SURFACE:
                 self.current_surface = self.setup_surface.loop()
             elif self.current_surface == BOARD_SURFACE:
