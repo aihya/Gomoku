@@ -9,7 +9,7 @@ Main points:
 2.2. Beam-search:
      - Limits the number of searched nodes depending on the current state of the game.
      - If the bot is winning, the beam-search width is reduced dramitically leaving only few nodes
-       to search. Otherwise, the width is expanded the include more of the possible nodes.
+       to search. Otherwise, the width is expanded to include more of the possible nodes.
 
 2.3. Threats.
 2.4. Thread evaluation.
