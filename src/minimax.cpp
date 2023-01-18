@@ -134,3 +134,25 @@ std::pair<t_coord, int> minimax(int depth, t_board &board, int &alpha, int &beta
         return maximize(depth, board, alpha, beta, player);
     return minimize(depth, board, alpha, beta, player);
 }
+
+
+int parse_settings(int argc, char **argv)
+{
+    
+}
+
+
+int main(int argc, char **argv)
+{
+    // Pipeline:
+    // 1. if the first player:
+    //      Enter the loop cycle directly
+    //      Make an educated guess
+    //      Output the result
+    // 2. if the second player:
+    //      Read the current state of the board
+    //      Make an educated guess
+    //      Output the result
+
+    return (0);
+}
