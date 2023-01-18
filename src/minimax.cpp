@@ -22,13 +22,15 @@ u_long reverse_bitset(u_long num)
 
 t_superposition superpose(t_board &board)
 {
-    t_superposition superposition;
+    t_superposition sup;
+    ulong num;
 
     for (t_board::iterator row = board.begin(); row != board.end(); row++)
     {
-        superposition.push_back((*row).first.to_ulong() | (*row).second.to_ulong());
+        num = (*row).first.to_ulong() | (*row).second.to_ulong();
+        sup.push_back(std::bitset<19>{num});
     }
-    return superposition;
+    return sup;
 }
 
 
